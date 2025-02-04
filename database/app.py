@@ -12,7 +12,7 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 
 
-#method which return a flask rapp
+#method which return a flask app
 def create_app():
     flask_app = Flask(__name__)
     #config for our app to find database
