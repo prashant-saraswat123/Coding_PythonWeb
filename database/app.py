@@ -14,12 +14,17 @@ db = SQLAlchemy()
 
 #method which return a flask app
 def create_app():
-    flask_app = Flask(__name__)
+    app = Flask(__name__)
     #config for our app to find database
-    flask_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./users.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./users.db'
 
     #integrating our app with database
-    migrate = Migrate(flask_app, db)
-    db.init_app(flask_app)
+    migrate = Migrate(app, db)
+    db.init_app(app)
 
-    return flask_app
+    from view import register_request
+    register_request(app, db)
+
+    migrate = Migrate(app, db)
+
+    return app

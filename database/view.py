@@ -3,8 +3,6 @@ from flask import render_template, request
 from models import Person
 
 
-
-
 def register_request(app, db):
     @app.route('/', methods=["POST", 'GET'])
     def index():
@@ -22,4 +20,11 @@ def register_request(app, db):
             db.session.commit()
             people = Person.query.all()
             return render_template('index.html', people=people)
+    
+    @app.route('/delete/<pid>', methods=['DELETE'])
+    def delete(pid):
+        Person.query.filter(Person.pid == pid).delete()
 
+        db.session.commit()
+        people = Person.query.all()
+        return render_template('index.html', people=people)
