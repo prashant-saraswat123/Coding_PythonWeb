@@ -1,9 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, send_from_directory
 
 from datetime import timedelta
 
 #creating an instance of class
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = "xyz"
 app.permanent_session_lifetime = timedelta(days=1)
 
@@ -39,7 +39,11 @@ def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
 
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory('static', filename)
+
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
     

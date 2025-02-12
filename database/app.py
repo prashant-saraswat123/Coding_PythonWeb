@@ -14,7 +14,7 @@ db = SQLAlchemy()
 
 #method which return a flask app
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder="static", template_folder="templates")
     #config for our app to find database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./users.db'
 
