@@ -5,7 +5,7 @@ from datetime import timedelta
 #creating an instance of class
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = "xyz"
-app.permanent_session_lifetime = timedelta(days=1)
+# app.permanent_session_lifetime = timedelta(days=1)
 
 #home page
 @app.route("/")

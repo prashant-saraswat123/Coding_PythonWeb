@@ -21,7 +21,7 @@ def register_request(app, db):
             people = Person.query.all()
             return render_template('index.html', people=people)
     
-    @app.route('/delete/<pid>', methods=['DELETE'])
+    @app.route('/delete/<pid>', methods=['POST'])
     def delete(pid):
         Person.query.filter(Person.pid == pid).delete()
 

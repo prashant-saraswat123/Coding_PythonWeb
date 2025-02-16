@@ -1,7 +1,7 @@
 from app import db
 
 class Person(db.Model):
-    __tabelname__ = 'people'
+    __tablename__ = 'people'
     pid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text)
     age = db.Column(db.Integer)
